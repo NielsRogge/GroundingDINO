@@ -92,6 +92,9 @@ def get_grounding_output(model, image, caption, box_threshold, text_threshold=No
     image = image.to(device)
     with torch.no_grad():
         outputs = model(image[None], captions=[caption])
+
+    print("First values of logits:", outputs["pred_logits"][0,:3,:3])
+
     logits = outputs["pred_logits"].sigmoid()[0]  # (nq, 256)
     boxes = outputs["pred_boxes"][0]  # (nq, 4)
 
