@@ -274,6 +274,10 @@ class GroundingDINO(nn.Module):
             # import ipdb; ipdb.set_trace()
             tokenized_for_encoder = tokenized
 
+        print("Text inputs:")
+        for k,v in tokenized_for_encoder.items():
+            print(k,v.shape)
+
         bert_output = self.bert(**tokenized_for_encoder)  # bs, 195, 768
 
         encoded_text = self.feat_map(bert_output["last_hidden_state"])  # bs, 195, d_model
@@ -301,6 +305,9 @@ class GroundingDINO(nn.Module):
             samples = nested_tensor_from_tensor_list(samples)
         if not hasattr(self, 'features') or not hasattr(self, 'poss'):
             self.set_image_tensor(samples)
+
+        print("Image input:")
+        print(samples.tensor.shape)
 
         srcs = []
         masks = []
