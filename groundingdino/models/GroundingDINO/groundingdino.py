@@ -307,7 +307,7 @@ class GroundingDINO(nn.Module):
             self.set_image_tensor(samples)
 
         print("Image input:")
-        print(samples.tensor.shape)
+        print(samples.tensors.shape)
 
         srcs = []
         masks = []
