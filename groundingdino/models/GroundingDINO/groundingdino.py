@@ -278,6 +278,16 @@ class GroundingDINO(nn.Module):
         for k,v in tokenized_for_encoder.items():
             print(k,v.shape)
 
+        from huggingface_hub import HfApi
+        api = HfApi()
+        torch.save("grounding_dino_text_inputs.pt", tokenized_for_encoder)
+        api.upload_file(
+            path_or_fileobj="grounding_dino_text_inputs.pt",
+            path_in_repo="grounding_dino_text_inputs.pt",
+            repo_id="nielsr/test-image",
+            repo_type="dataset",
+        )
+
         bert_output = self.bert(**tokenized_for_encoder)  # bs, 195, 768
 
         encoded_text = self.feat_map(bert_output["last_hidden_state"])  # bs, 195, d_model
@@ -308,6 +318,16 @@ class GroundingDINO(nn.Module):
 
         print("Image input:")
         print(samples.tensors.shape)
+
+        from huggingface_hub import HfApi
+        api = HfApi()
+        torch.save("grounding_dino_pixel_values.pt", tokenized_for_encoder)
+        api.upload_file(
+            path_or_fileobj="grounding_dino_pixel_values.pt",
+            path_in_repo="grounding_dino_pixel_values.pt",
+            repo_id="nielsr/test-image",
+            repo_type="dataset",
+        )
 
         srcs = []
         masks = []
