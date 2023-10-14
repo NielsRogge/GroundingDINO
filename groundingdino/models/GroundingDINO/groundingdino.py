@@ -280,7 +280,7 @@ class GroundingDINO(nn.Module):
 
         from huggingface_hub import HfApi
         api = HfApi()
-        torch.save("grounding_dino_text_inputs.pt", tokenized_for_encoder)
+        torch.save(tokenized_for_encoder, "grounding_dino_text_inputs.pt")
         api.upload_file(
             path_or_fileobj="grounding_dino_text_inputs.pt",
             path_in_repo="grounding_dino_text_inputs.pt",
@@ -321,7 +321,7 @@ class GroundingDINO(nn.Module):
 
         from huggingface_hub import HfApi
         api = HfApi()
-        torch.save("grounding_dino_pixel_values.pt", tokenized_for_encoder)
+        torch.save(samples.tensors, "grounding_dino_pixel_values.pt")
         api.upload_file(
             path_or_fileobj="grounding_dino_pixel_values.pt",
             path_in_repo="grounding_dino_pixel_values.pt",
