@@ -278,15 +278,15 @@ class GroundingDINO(nn.Module):
         for k,v in tokenized_for_encoder.items():
             print(k,v.shape)
 
-        from huggingface_hub import HfApi
-        api = HfApi()
-        torch.save(tokenized_for_encoder, "grounding_dino_text_inputs.pt")
-        api.upload_file(
-            path_or_fileobj="grounding_dino_text_inputs.pt",
-            path_in_repo="grounding_dino_text_inputs.pt",
-            repo_id="nielsr/test-image",
-            repo_type="dataset",
-        )
+        # from huggingface_hub import HfApi
+        # api = HfApi()
+        # torch.save(tokenized_for_encoder, "grounding_dino_text_inputs.pt")
+        # api.upload_file(
+        #     path_or_fileobj="grounding_dino_text_inputs.pt",
+        #     path_in_repo="grounding_dino_text_inputs.pt",
+        #     repo_id="nielsr/test-image",
+        #     repo_type="dataset",
+        # )
 
         bert_output = self.bert(**tokenized_for_encoder)  # bs, 195, 768
 
@@ -319,15 +319,15 @@ class GroundingDINO(nn.Module):
         print("Image input:")
         print(samples.tensors.shape)
 
-        from huggingface_hub import HfApi
-        api = HfApi()
-        torch.save(samples.tensors, "grounding_dino_pixel_values.pt")
-        api.upload_file(
-            path_or_fileobj="grounding_dino_pixel_values.pt",
-            path_in_repo="grounding_dino_pixel_values.pt",
-            repo_id="nielsr/test-image",
-            repo_type="dataset",
-        )
+        # from huggingface_hub import HfApi
+        # api = HfApi()
+        # torch.save(samples.tensors, "grounding_dino_pixel_values.pt")
+        # api.upload_file(
+        #     path_or_fileobj="grounding_dino_pixel_values.pt",
+        #     path_in_repo="grounding_dino_pixel_values.pt",
+        #     repo_id="nielsr/test-image",
+        #     repo_type="dataset",
+        # )
 
         srcs = []
         masks = []
